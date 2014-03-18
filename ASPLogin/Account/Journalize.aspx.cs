@@ -56,7 +56,7 @@ public partial class Account_Journalize : System.Web.UI.Page
         if (FileUpload1.HasFile)
         {
             string a = "DEFAULT";
-            Int32 i, j;
+            Int32 i, j, acct_id;
             String str = FileUpload1.FileName;
             FileUpload1.PostedFile.SaveAs(Server.MapPath(".") + "//uploads//" + str);
             String path = "~//Account/uploads//" + str.ToString();
@@ -77,22 +77,66 @@ public partial class Account_Journalize : System.Web.UI.Page
 
                 con.Close();
             }
+            using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+            {
+                con.Open();
+                SqlCommand cmd1 = new SqlCommand("Select acct_id from Accounts where acct_name like '" + DropDownList1.Text +"' ", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                acct_id = (Int32)cmd1.ExecuteScalar();
+
+                con.Close();
+            }
 
             using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
             {
                 con.Open();
-                SqlCommand cmd1 = new SqlCommand("insert into individualTransactions values('" + (i+1) + "','""", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                SqlCommand cmd1 = new SqlCommand("insert into individualTransactions values('" + (i+1) + "','"+ Int32.Parse(TextBox1.Text)+ "','Debit','" + acct_id + "','"+  (j+1) +")", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                cmd1.ExecuteNonQuery();
+
+                con.Close();
+            }
+
+
+
+
+
+
+            using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+            {
+                con.Open();
+                SqlCommand cmd1 = new SqlCommand("Select top 1 indiv_trans_id from individualTransaction order by indiv_trans_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
                 j = (Int32)cmd1.ExecuteScalar();
 
                 con.Close();
             }
+            using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+            {
+                con.Open();
+                SqlCommand cmd1 = new SqlCommand("Select acct_id from Accounts where acct_name like '" + DropDownList2.Text + "' ", con);
+                acct_id = (Int32)cmd1.ExecuteScalar();
+
+                con.Close();
+            }
+            using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+            {
+                con.Open();
+                SqlCommand cmd1 = new SqlCommand("insert into individualTransactions values('" + (i + 1) + "','" + Int32.Parse(TextBox1.Text) + "','Credit','" + acct_id + "','" + (j + 1) + ")", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                cmd1.ExecuteNonQuery();
+
+                con.Close();
+            }
+
+
+
+
+
+
             
-            con.Open();
+            //con.Open();
             
-            SqlCommand cmd = new SqlCommand("insert into individualTransactions values('" + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + path + "')", con);
-            cmd.ExecuteNonQuery();
-            con.Close();
-            Label1.Text = "Image Uploaded";
+            //SqlCommand cmd = new SqlCommand("insert into individualTransactions values('" + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + path + "')", con);
+            //cmd.ExecuteNonQuery();
+            //con.Close();
+            //Label1.Text = "Image Uploaded";
             
             TextBox1.Text = "";
             TextBox2.Text = "";
