@@ -46,6 +46,7 @@
                 <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                 <asp:Panel ID="Panel1" runat="server">
                     <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+                    <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder>
                 </asp:Panel>
             </td>
         </tr>

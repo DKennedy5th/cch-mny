@@ -32,7 +32,7 @@ public partial class Account_AddAccount : System.Web.UI.Page
         using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
         {
             //SqlCommand cmd1 = new SqlCommand();
-            
+
 
             con.Open();
             //int b = 1234;

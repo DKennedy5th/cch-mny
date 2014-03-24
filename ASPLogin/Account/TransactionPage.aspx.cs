@@ -13,7 +13,7 @@ public partial class Account_TransactionPage : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string chart = Request.QueryString["name"];
-        SqlDataAdapter da = new SqlDataAdapter("select * from Accounts where acct_name = '" +   chart + "'", con);
+        SqlDataAdapter da = new SqlDataAdapter("select * from Accounts where acct_name = '" + chart + "'", con);
         DataTable dt = new DataTable();
         da.Fill(dt);
         GridView2.DataSource = dt;
