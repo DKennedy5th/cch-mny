@@ -65,7 +65,7 @@
                         <li><a runat="server" href="~/About.aspx">About</a></li>
                         <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
                         <li><a runat="server" href="~/Account/ChartAccounts.aspx">Chart of Accounts</a></li>
-                        <li><a runat="server" href="~/Account/Journalize.aspx">Journalize</a></li>
+                        <li><a runat="server" href="~/Account/DJournal.aspx">Journalize</a></li>
                         <li><a runat="server" href="~/Account/AddAccount.aspx">Add Account</a></li>
                     </ul>
                 </nav>

@@ -57,19 +57,24 @@ public partial class Account_DJournal : System.Web.UI.Page
             debitCreditDDL[i] = dropList;
 
             DropDownList acctDDL = new DropDownList();
-            DataTable subjects = new DataTable();
+            
 
             using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
             {
 
                 try
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT acct_name FROM ApplicationDomain.DBO.Accounts", con);
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Accounts", con);
+                    DataTable subjects = new DataTable();
                     adapter.Fill(subjects);
 
                     acctDDL.DataSource = subjects;
-                    acctDDL.DataTextField = "acct_name";
                     acctDDL.DataBind();
+                    acctDDL.DataTextField = "acct_name";
+                    acctDDL.DataValueField = "acct_name";
+                    acctDDL.DataBind();
+
+                    accountDDL[i] = acctDDL;
                 }
                 catch (Exception ex)
                 {
@@ -124,7 +129,7 @@ public partial class Account_DJournal : System.Web.UI.Page
             }
             if (debitTotal != creditTotal)
             {
-                MyLabel.Text = "credit and debits must be equal";
+                MyLabel.Text = "credit and debits must be equal" + accountDDL[1].Text;
             }
             else
             {
@@ -159,20 +164,45 @@ public partial class Account_DJournal : System.Web.UI.Page
                     con.Close();
                 }
 
-                /** Loop to be implemented later tonight
+                
                 for (counter = 0; counter < myCount; counter += 1)
                 {
                     using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
                     {
                         con.Open();
-                        SqlCommand cmd1 = new SqlCommand("Select acct_id from Accounts where acct_name like '"+  +"' ", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                        SqlCommand cmd1 = new SqlCommand("Select top 1 indiv_trans_id from individualTransaction order by indiv_trans_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                        individual_trans_id = (Int32)cmd1.ExecuteScalar();
+
+                        con.Close();
+                    }
+
+                    using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+                    {
+                        con.Open();
+                        string s = accountDDL[counter].Text;
+                        SqlCommand cmd1 = new SqlCommand("Select acct_id from Accounts where acct_name like '" + s + "' ", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
                         acct_id = (Int32)cmd1.ExecuteScalar();
 
                         con.Close();
                     }
 
+                    using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+                    {
+                        con.Open();
+                        SqlCommand cmd1 = new SqlCommand("insert into individualTransaction values('" + (j+1) +"','"+ Convert.ToInt32(dynamicTextBoxes[counter].Text) +"','"+ debitCreditDDL[counter].Text +"','"+ acct_id +"','"+ (individual_trans_id + 1) +"')", con);
+                        cmd1.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+
+
+
+
+
+
+
                 }
-                **/
+                
 
 
 
