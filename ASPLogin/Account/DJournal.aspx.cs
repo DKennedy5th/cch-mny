@@ -127,11 +127,12 @@ public partial class Account_DJournal : System.Web.UI.Page
             {
                 creditTotal += Convert.ToInt32(dynamicTextBoxes[i].Text);
             }
+        }
             if (debitTotal != creditTotal)
             {
                 MyLabel.Text = "credit and debits must be equal";
             }
-            else
+            else if (debitTotal == creditTotal)
             {
 
                 if (FileUpload1.HasFile)
@@ -163,18 +164,19 @@ public partial class Account_DJournal : System.Web.UI.Page
                     cmd1.ExecuteNonQuery();
                     con.Close();
                 }
-
                 
                 for (counter = 0; counter < myCount; counter += 1)
                 {
-                    using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-                    {
-                        con.Open();
-                        SqlCommand cmd1 = new SqlCommand("Select top 1 indiv_trans_id from individualTransaction order by indiv_trans_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
-                        individual_trans_id = (Int32)cmd1.ExecuteScalar();
 
-                        con.Close();
-                    }
+                
+                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+                {
+                    con.Open();
+                    SqlCommand cmd1 = new SqlCommand("Select top 1 indiv_trans_id from individualTransaction order by indiv_trans_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                    individual_trans_id = (Int32)cmd1.ExecuteScalar();
+
+                    con.Close();
+                }
 
                     using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
                     {
@@ -184,8 +186,9 @@ public partial class Account_DJournal : System.Web.UI.Page
                         acct_id = (Int32)cmd1.ExecuteScalar();
 
                         con.Close();
-                    }
+                    }                   
 
+                    
                     using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
                     {
                         con.Open();
@@ -194,13 +197,7 @@ public partial class Account_DJournal : System.Web.UI.Page
 
                         con.Close();
                     }
-
-
-
-
-
-
-
+                    
                 }
                 
 
@@ -211,7 +208,7 @@ public partial class Account_DJournal : System.Web.UI.Page
                 MyLabel.Text = "Entry is now pending approval";
             }
 
-            }
+            
 
     }
 
