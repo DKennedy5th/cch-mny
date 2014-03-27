@@ -19,7 +19,7 @@
         <tr>
             <td class="auto-style3">Select Chart of Accounts</td>
             <td>
-                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="acct_name" DataValueField="acct_name">
+                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="acct_name" DataValueField="acct_name">
                     <asp:ListItem>ASDF</asp:ListItem>
                     <asp:ListItem>QWERTY</asp:ListItem>
                     <asp:ListItem>zxcv</asp:ListItem>
@@ -30,11 +30,18 @@
         </tr>
         <tr>
             <td class="auto-style2" colspan="2">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:BoundField DataField="acct_name" HeaderText="Account Name" SortExpression="acct_name" />
-                        <asp:BoundField DataField="acct_bal" HeaderText="Current Balance" SortExpression="acct_bal" />
+                        <asp:BoundField DataField="acct_name" HeaderText="acct_name" SortExpression="acct_name" />
+                        <asp:BoundField DataField="active" HeaderText="active" SortExpression="active" />
+                        <asp:BoundField DataField="created_at" HeaderText="created_at" SortExpression="created_at" />
+                        <asp:BoundField DataField="valid_at" HeaderText="valid_at" SortExpression="valid_at" />
+                        <asp:BoundField DataField="valid_by" HeaderText="valid_by" SortExpression="valid_by" />
+                        <asp:BoundField DataField="created_by" HeaderText="created_by" SortExpression="created_by" />
+                        <asp:BoundField DataField="acct_type" HeaderText="acct_type" SortExpression="acct_type" />
+                        <asp:BoundField DataField="last_updated" HeaderText="last_updated" SortExpression="last_updated" />
+                        <asp:BoundField DataField="last_updated_by" HeaderText="last_updated_by" SortExpression="last_updated_by" />
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -47,6 +54,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TeamCacAh4UPauaPConnectionString %>" SelectCommand="SELECT [acct_name], [active], [created_at], [valid_at], [valid_by], [created_by], [acct_type], [last_updated], [last_updated_by] FROM [Accounts]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ApplicationDomainConnectionString %>" SelectCommand="SELECT [acct_name], [acct_bal] FROM [Accounts]"></asp:SqlDataSource>
             </td>
         </tr>
