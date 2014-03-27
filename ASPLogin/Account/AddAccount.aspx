@@ -8,7 +8,14 @@
     .auto-style2 {
         width: 154px;
     }
-</style>
+        .auto-style3 {
+            width: 154px;
+            height: 47px;
+        }
+        .auto-style4 {
+            height: 47px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" Runat="Server">
 </asp:Content>
@@ -24,23 +31,20 @@
         <td class="auto-style2">Account Type</td>
         <td>
             <asp:DropDownList ID="DropDownList1" runat="server">
-                <asp:ListItem>-------------------</asp:ListItem>
-                <asp:ListItem>Accounts Payable</asp:ListItem>
-                <asp:ListItem>Accounts Recievable</asp:ListItem>
-                <asp:ListItem>Cash</asp:ListItem>
-                <asp:ListItem>Credit</asp:ListItem>
-                <asp:ListItem>Equipment</asp:ListItem>
-                <asp:ListItem>Long Term Assets</asp:ListItem>
-                <asp:ListItem>Short Term Asset</asp:ListItem>
+                <asp:ListItem>Assets</asp:ListItem>
                 <asp:ListItem>Liabilities</asp:ListItem>
                 <asp:ListItem>Equity</asp:ListItem>
-                <asp:ListItem>Miscellaneous</asp:ListItem>
+                <asp:ListItem>Revenue Account</asp:ListItem>
+                <asp:ListItem>Cost of Sales</asp:ListItem>
+                <asp:ListItem>Expenses</asp:ListItem>
+                <asp:ListItem>Gain on Sale of Assets</asp:ListItem>
+                <asp:ListItem>Losses on Sale of Assets</asp:ListItem>
             </asp:DropDownList>
         </td>
     </tr>
     <tr>
-        <td class="auto-style2">Starting Balance</td>
-        <td>
+        <td class="auto-style3">Starting Balance</td>
+        <td class="auto-style4">
             <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
         </td>
     </tr>
@@ -48,7 +52,6 @@
         <td class="auto-style2">Active</td>
         <td>
             <asp:DropDownList ID="DropDownList2" runat="server">
-                <asp:ListItem>---</asp:ListItem>
                 <asp:ListItem>Yes</asp:ListItem>
                 <asp:ListItem>No</asp:ListItem>
             </asp:DropDownList>
@@ -64,13 +67,13 @@
     <tr>
         <td class="auto-style2">&nbsp;</td>
         <td>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="acct_id" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="acct_id" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="acct_id" HeaderText="Account Id" ReadOnly="True" SortExpression="acct_id" />
-                    <asp:BoundField DataField="acct_name" HeaderText="Account Name" SortExpression="acct_name" />
-                    <asp:BoundField DataField="active" HeaderText="Active" SortExpression="active" />
-                    <asp:BoundField DataField="acct_type" HeaderText="Account Type" SortExpression="acct_type" />
+                    <asp:BoundField DataField="acct_id" HeaderText="acct_id" ReadOnly="True" SortExpression="acct_id" />
+                    <asp:BoundField DataField="acct_type" HeaderText="acct_type" SortExpression="acct_type" />
+                    <asp:BoundField DataField="acct_bal" HeaderText="acct_bal" SortExpression="acct_bal" />
+                    <asp:BoundField DataField="active" HeaderText="active" SortExpression="active" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -83,6 +86,7 @@
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TeamCacAh4UPauaPConnectionString %>" SelectCommand="SELECT [acct_id], [acct_type], [acct_bal], [active] FROM [Accounts]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ApplicationDomainConnectionString %>" SelectCommand="SELECT [acct_id], [acct_name], [active], [acct_type] FROM [Accounts]"></asp:SqlDataSource>
         </td>
     </tr>

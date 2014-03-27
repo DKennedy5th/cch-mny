@@ -29,22 +29,22 @@ public partial class Account_AddAccount : System.Web.UI.Page
         string a = "DEFAULT";
         Int32 i;
         string str;
-        using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
         {
             //SqlCommand cmd1 = new SqlCommand();
 
 
             con.Open();
             //int b = 1234;
-            SqlCommand cmd1 = new SqlCommand("Select top 1 acct_id from accounts where (acct_type = '"+ DropDownList1.Text +"')order by acct_id DESC",con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+            SqlCommand cmd1 = new SqlCommand("Select top 1 acct_id from Accounts where (acct_type = '"+ DropDownList1.Text +"')order by acct_id DESC",con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
             i = (Int32)cmd1.ExecuteScalar();
        
             con.Close();
         }
-        using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand("insert into Accounts values('" + (i+1) + "','" + DropDownList1.Text + "','" + Membership.GetUser().UserName + "','" + DateTime.Now + "','" + TextBox1.Text + "','" + Int32.Parse(TextBox2.Text) + "','" + Int32.Parse(TextBox2.Text) + "','" + DropDownList2.Text + "','" + Membership.GetUser().UserName + "','" + DateTime.Now + "','" + DateTime.Now + "')", con);
+            SqlCommand cmd = new SqlCommand("insert into Accounts values('" + (i + 1) + "','" + DropDownList1.Text + "','Report_Type','" + Membership.GetUser().UserName + "','" + DateTime.Now + "','" + TextBox1.Text + "','" + Int32.Parse(TextBox2.Text) + "','" + Int32.Parse(TextBox2.Text) + "','" + DropDownList2.Text + "','" + Membership.GetUser().UserName + "','" + DateTime.Now + "','" + DateTime.Now + "','" + Membership.GetUser().UserName + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
