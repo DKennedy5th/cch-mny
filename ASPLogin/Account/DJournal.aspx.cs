@@ -57,9 +57,9 @@ public partial class Account_DJournal : System.Web.UI.Page
             debitCreditDDL[i] = dropList;
 
             DropDownList acctDDL = new DropDownList();
-            
 
-            using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+
+            using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
             {
 
                 try
@@ -129,7 +129,7 @@ public partial class Account_DJournal : System.Web.UI.Page
             }
             if (debitTotal != creditTotal)
             {
-                MyLabel.Text = "credit and debits must be equal" + accountDDL[1].Text;
+                MyLabel.Text = "credit and debits must be equal";
             }
             else
             {
@@ -146,7 +146,7 @@ public partial class Account_DJournal : System.Web.UI.Page
                 }
 
                 //get the highest trans id so it can be incremented by 1 for the entry
-                using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
                 {
                     con.Open();
                     SqlCommand cmd1 = new SqlCommand("Select top 1 trans_id from Transactions order by trans_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
@@ -155,11 +155,11 @@ public partial class Account_DJournal : System.Web.UI.Page
                     con.Close();
                 }
                 //parse data to Transactions db...MUST BE DONE FIRST
-                using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
                 {
                     con.Open();
                     
-                    SqlCommand cmd1 = new SqlCommand("insert into Transactions values('" + (j + 1) + "','" + Membership.GetUser().UserName + "', DEFAULT,'" + DescriptionTextBox.Text + "','" + path + "','" + Membership.GetUser().UserName + "', DEFAULT)", con);
+                    SqlCommand cmd1 = new SqlCommand("insert into Transactions values('" + (j + 1) + "','" + Membership.GetUser().UserName + "','"+ DateTime.Now + "','" + DescriptionTextBox.Text + "','" + path + "','" + Membership.GetUser().UserName + "', '"+DateTime.Now+"','Pending Approval')", con);
                     cmd1.ExecuteNonQuery();
                     con.Close();
                 }
@@ -167,7 +167,7 @@ public partial class Account_DJournal : System.Web.UI.Page
                 
                 for (counter = 0; counter < myCount; counter += 1)
                 {
-                    using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+                    using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
                     {
                         con.Open();
                         SqlCommand cmd1 = new SqlCommand("Select top 1 indiv_trans_id from individualTransaction order by indiv_trans_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
@@ -176,7 +176,7 @@ public partial class Account_DJournal : System.Web.UI.Page
                         con.Close();
                     }
 
-                    using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+                    using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
                     {
                         con.Open();
                         string s = accountDDL[counter].Text;
@@ -186,7 +186,7 @@ public partial class Account_DJournal : System.Web.UI.Page
                         con.Close();
                     }
 
-                    using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ApplicationDomain;Integrated Security=True"))
+                    using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
                     {
                         con.Open();
                         SqlCommand cmd1 = new SqlCommand("insert into individualTransaction values('" + (j+1) +"','"+ Convert.ToInt32(dynamicTextBoxes[counter].Text) +"','"+ debitCreditDDL[counter].Text +"','"+ acct_id +"','"+ (individual_trans_id + 1) +"')", con);
