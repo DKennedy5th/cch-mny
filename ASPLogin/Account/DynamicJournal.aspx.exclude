@@ -1,0 +1,62 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="DynamicJournal.aspx.cs" Inherits="Account_DynamicJournal" %>
+
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+            height: 97px;
+        }
+        .auto-style2 {
+            width: 186px;
+        }
+        .auto-style3 {
+            width: 180px;
+        }
+        .auto-style4 {
+            width: 1064px;
+        }
+    </style>
+</asp:Content>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" Runat="Server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" Runat="Server">
+    
+   
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <table class="auto-style1">
+                <tr>
+                    <td>
+                        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                    </td>
+                    <td>
+                        <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+                    </td>
+                    <td>
+                        <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder>
+                    </td>
+                </tr>
+            </table>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnAddTextBox" EventName="Click" />
+        </Triggers>
+    </asp:UpdatePanel>
+    <br /><br />
+    <asp:Button ID="btnAddTextBox" runat="server"  Text="Add TextBox" OnClick="btnAddTextBox_Click" />
+    <br /><br />
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+        <ContentTemplate>
+            <asp:Button runat="server" ID="MyButton" Text="Get Values" OnClick="MyButton_Click" />
+            <br /><br />
+            <asp:Label runat="server" ID="MyLabel"></asp:Label>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    
+</asp:Content>
+    
