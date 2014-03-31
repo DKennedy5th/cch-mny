@@ -1,0 +1,90 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Data.SqlClient;
+
+
+public partial class Account_LoginTest : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    // Custom login control
+    protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+    {
+        try
+        {
+            string uname = Login1.UserName.Trim();
+            string password = Login1.Password.Trim();
+            string acct_type;
+
+            bool flag = AuthenticateUser(uname, password);
+            if (flag == true)
+            {
+                e.Authenticated = true;
+
+                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+                {
+                    con.Open();
+                    SqlCommand cmd1 = new SqlCommand("Select type_of_account from userAccounts where username like '" + uname + "' ", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                    acct_type = (string)cmd1.ExecuteScalar();
+
+                    con.Close();
+                }  
+                if(acct_type.Equals("Admin"))
+                {
+                    Login1.DestinationPageUrl = "AddAccount.aspx";
+                }
+                else
+                {
+                    Login1.DestinationPageUrl = "DJournal.aspx";
+                }
+            }
+            else
+                e.Authenticated = false;
+        }
+        catch (Exception)
+        {
+            e.Authenticated = false;
+        }
+    }
+
+    private bool AuthenticateUser(string uname, string password)
+    {
+        bool bflag = false;
+        string connString = "Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!";
+        string strSQL = "Select * from userAccounts where Username ='" + uname + "' and Password ='" + password + "'";
+        DataSet userDS = new DataSet();
+        SqlConnection m_conn;
+        SqlDataAdapter m_dataAdapter;
+        SqlCommand m_Command;
+        try
+        {
+            m_conn = new SqlConnection(connString);
+            m_conn.Open();
+            m_dataAdapter = new SqlDataAdapter(strSQL, m_conn);
+            m_dataAdapter.Fill(userDS);
+            m_conn.Close();
+        }
+        catch (Exception)
+        {
+            userDS = null;
+        }
+
+        if (userDS != null)
+        {
+            if (userDS.Tables[0].Rows.Count > 0)
+                bflag = true;
+        }
+        return bflag;
+
+    }
+}

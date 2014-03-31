@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
-public partial class Account_DJournal : System.Web.UI.Page
+public partial class User_Journalize : System.Web.UI.Page
 {
     static int myCount = 2;
     private TextBox[] dynamicTextBoxes;

@@ -16,6 +16,9 @@ public partial class Account_AddAccount : System.Web.UI.Page
     {
 
 
+        Label1.Text = Page.User.Identity.Name;
+
+
 
     }
     protected void Button1_Click(object sender, EventArgs e)
@@ -44,7 +47,7 @@ public partial class Account_AddAccount : System.Web.UI.Page
         using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand("insert into Accounts values('" + (i + 1) + "','" + DropDownList1.Text + "','Report_Type','" + Membership.GetUser().UserName + "','" + DateTime.Now + "','" + TextBox1.Text + "','" + Int32.Parse(TextBox2.Text) + "','" + Int32.Parse(TextBox2.Text) + "','" + DropDownList2.Text + "','" + Membership.GetUser().UserName + "','" + DateTime.Now + "','" + DateTime.Now + "','" + Membership.GetUser().UserName + "')", con);
+            SqlCommand cmd = new SqlCommand("insert into Accounts values('" + (i + 1) + "','" + DropDownList1.Text + "','Report_Type','" + Page.User.Identity.Name + "','" + DateTime.Now + "','" + TextBox1.Text + "','" + Int32.Parse(TextBox2.Text) + "','" + Int32.Parse(TextBox2.Text) + "','" + DropDownList2.Text + "','" + Page.User.Identity.Name + "','" + DateTime.Now + "','" + DateTime.Now + "','" + Page.User.Identity.Name + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
