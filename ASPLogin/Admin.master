@@ -56,11 +56,10 @@
                 </section>
                 <nav>
                     <ul id="menu">
+                        <li><a id="A4" runat="server" href="~/Admin/Default.aspx">Home</a></li>
                         <li><a id="A6" runat="server" href="~/Admin/ChartOfAccounts.aspx">Chart of Accounts</a></li>
                         <li><a id="A8" runat="server" href="~/Admin/AddAccount.aspx">Add Account</a></li>
-                        <li><a id="A3" runat="server" href="~/Admin/AddAccount.aspx">Edit Account</a></li>
-
-                        </li>
+                        <li><a id="A3" runat="server" href="~/Admin/AddAccount.aspx">Edit Account</a></li>         
                     </ul>
                 </nav>
             </div>
