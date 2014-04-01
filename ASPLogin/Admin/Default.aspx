@@ -32,5 +32,8 @@
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TeamCacAh4UPauaPConnectionString %>" SelectCommand="SELECT [username], [type_of_account], [SecurityQuestion] FROM [userAccounts]"></asp:SqlDataSource>
     </p>
+    <p>
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add New User" />
+    </p>
 </asp:Content>
 
