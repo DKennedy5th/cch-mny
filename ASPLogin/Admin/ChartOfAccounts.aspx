@@ -35,8 +35,6 @@
                         <asp:BoundField DataField="active" HeaderText="active" SortExpression="active" />
                         <asp:BoundField DataField="created_at" HeaderText="created_at" SortExpression="created_at" />
                         <asp:BoundField DataField="created_by" HeaderText="created_by" SortExpression="created_by" />
-                        <asp:BoundField DataField="valid_at" HeaderText="valid_at" SortExpression="valid_at" />
-                        <asp:BoundField DataField="valid_by" HeaderText="valid_by" SortExpression="valid_by" />
                         <asp:BoundField DataField="last_updated" HeaderText="last_updated" SortExpression="last_updated" />
                         <asp:BoundField DataField="last_updated_by" HeaderText="last_updated_by" SortExpression="last_updated_by" />
                     </Columns>

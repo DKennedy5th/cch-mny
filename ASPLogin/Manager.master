@@ -1,5 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin" %>
-
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Manager.master.cs" Inherits="Manager" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,10 +55,9 @@
                 </section>
                 <nav>
                     <ul id="menu">
-                        <li><a id="A4" runat="server" href="~/Admin/Default.aspx">Home</a></li>
-                        <li><a id="A6" runat="server" href="~/Admin/ChartOfAccounts.aspx">Chart of Accounts</a></li>
-                        <li><a id="A8" runat="server" href="~/Admin/AddAccount.aspx">Add Account</a></li>
-                        <li><a id="A3" runat="server" href="~/Admin/EditAccount.aspx">Edit Account</a></li>         
+                        <li><a id="A3" runat="server" href="~/Manager/Default.aspx">Account Home</a></li>
+                        <li><a id="A6" runat="server" href="~/Manager/ChartAccounts.aspx">Chart of Accounts</a></li>
+                        <li><a id="A4" runat="server" href="~/Manager/Reports.aspx">Reports</a></li>
                     </ul>
                 </nav>
             </div>

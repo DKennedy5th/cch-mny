@@ -56,7 +56,10 @@
                 </section>
                 <nav>
                     <ul id="menu">
-                        <li><a id="A6" runat="server" href="~/User/Journalize.aspx">Journalize</a></li>
+                        <li><a id="A3" runat="server" href="~/User/Default.aspx">Account Home</a></li>
+                        <li><a id="A6" runat="server" href="~/User/ChartAccounts.aspx">Chart of Accounts</a></li>
+                        <li><a id="A7" runat="server" href="~/User/Journalize.aspx">Journalize</a></li>
+                        <li><a id="A4" runat="server" href="~/User/Journalize.aspx">Reports</a></li>
                     </ul>
                 </nav>
             </div>

@@ -61,8 +61,8 @@
                     <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul>
-                                <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
-                                <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
+                                
+                                <li><a id="loginLink" runat="server" href="~/Login.aspx">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -70,19 +70,18 @@
                                 Hello, <a id="A2" runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
                                     <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
                                 </a>!
-                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
                             </p>
                         </LoggedInTemplate>
                     </asp:LoginView>
                 </section>
                 <nav>
                     <ul id="menu">
-                        <li><a id="A3" runat="server" href="~/">Home</a></li>
-                        <li><a id="A4" runat="server" href="~/About.aspx">About</a></li>
-                        <li><a id="A5" runat="server" href="~/Contact.aspx">Contact</a></li>
-                        <li><a id="A6" runat="server" href="~/Account/ChartAccounts.aspx">Chart of Accounts</a></li>
-                        <li><a id="A7" runat="server" href="~/Account/Journalize.aspx">Journalize</a></li>
-                        <li><a id="A8" runat="server" href="~/Account/AddAccount.aspx">Add Account</a></li>
+                        <li><a id="A3" runat="server" href="~/User/Default.aspx">Account Home</a></li>
+                        <li><a id="A6" runat="server" href="~/User/ChartAccounts.aspx">Chart of Accounts</a></li>
+                        <li><a id="A7" runat="server" href="~/User/Journalize.aspx">Journalize</a></li>
+                        <li><a id="A4" runat="server" href="~/User/Journalize.aspx">Reports</a></li>
+
                     </ul>
                 </nav>
             </div>
