@@ -7,7 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" Runat="Server">  
     <asp:Table ID="ISHead" runat="server" Height="115px" Width="90%" EnableTheming="True" CellPadding="2" CellSpacing="2">
         <asp:TableRow>
-            <asp:TableCell Font-Size="X-Large" Font-Bold="true" HorizontalAlign="Center">Team Cache Money<br />Trial Balance<br />As of...</asp:TableCell>
+            <asp:TableCell Font-Size="X-Large" Font-Bold="true" HorizontalAlign="Center">Team Cache Money<br />Trial Balance<br />As of <asp:Label runat="server" ID="asOf"></asp:Label></asp:TableCell>
         </asp:TableRow>
         
     </asp:Table>
@@ -19,6 +19,9 @@
         </asp:TableRow>
         
     </asp:Table>
-    
+    <asp:Label runat="server" ID="strtLbl"></asp:Label>
+    <asp:Label runat="server" ID="endLbl"></asp:Label>
+    <asp:Label runat="server" ID="strtRslt"></asp:Label>
+    <asp:Label runat="server" ID="endRslt"></asp:Label>
 </asp:Content>
 
