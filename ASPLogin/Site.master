@@ -9,9 +9,15 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" /> 
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+   <link rel="icon" type="image/gif" href="~/favicon.gif">
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <style type="text/css">
+        .auto-style1
+        {
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -45,12 +51,12 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul>
-                                <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
-                                <li><a id="loginLink" runat="server" href="~/Login.aspx">Log in</a></li>
+                                <li class="auto-style1"><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
+                                <li class="auto-style1"><a id="loginLink" runat="server" href="~/Login.aspx">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
-                            <p>
+                            <p class="auto-style1">
                                 Hello, <a runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
                                     <asp:LoginName runat="server" CssClass="username" />
                                 </a>!
@@ -79,7 +85,7 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p>
-                    &copy; <%: DateTime.Now.Year %> - My ASP.NET Application
+                    &copy; <%: DateTime.Now.Year %> SPSU Team Cache Money Fall 2014 - My ASP.NET Application
                 </p>
             </div>
         </div>
