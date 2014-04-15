@@ -19,8 +19,8 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell HorizontalAlign="Left">
-                <asp:Calendar runat="server" ID="strtDate" Caption="Start Date"></asp:Calendar>
-                <asp:Calendar runat="server" ID="endDate" Caption="End Date"></asp:Calendar>
+                <asp:Calendar runat="server" ID="strtDate" Caption="Start Date" Visible="false"></asp:Calendar>
+                <asp:Calendar runat="server" ID="endDate" Caption="As of:"></asp:Calendar>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>

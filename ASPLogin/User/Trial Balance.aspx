@@ -19,9 +19,9 @@
         </asp:TableRow>
         
     </asp:Table>
-    <asp:Label runat="server" ID="strtLbl"></asp:Label>
-    <asp:Label runat="server" ID="endLbl"></asp:Label>
-    <asp:Label runat="server" ID="strtRslt"></asp:Label>
-    <asp:Label runat="server" ID="endRslt"></asp:Label>
+    <asp:Label runat="server" ID="strtLbl" Visible="false"></asp:Label>
+    <asp:Label runat="server" ID="endLbl" Visible="false"></asp:Label>
+    <asp:Label runat="server" ID="strtRslt" Visible="false"></asp:Label>
+    <asp:Label runat="server" ID="endRslt" Visible="false"></asp:Label>
 </asp:Content>
 

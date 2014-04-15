@@ -17,7 +17,10 @@ public partial class User_Reports : System.Web.UI.Page
         if (ReportSelection.SelectedValue == "Trial Balance")
         {
             //strtDate.SelectedDate = 28;
-            Server.Transfer("~/User/Trial Balance.aspx?field1=" + strtDate.SelectedDate + "&field2=" + endDate.SelectedDate, false);
+            int year = DateTime.Now.Year;
+            DateTime start = new DateTime(year, 1, 1);
+            //Server.Transfer("~/User/Trial Balance.aspx?field1=" + strtDate.SelectedDate + "&field2=" + endDate.SelectedDate, false);
+            Server.Transfer("~/User/Trial Balance.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
         }
         else
         {
