@@ -14,6 +14,7 @@
                  <asp:DropDownList ID="ReportSelection" runat="server">
                      <asp:ListItem>Select Type</asp:ListItem>
                      <asp:ListItem Value="Trial Balance">Trial Balance</asp:ListItem>
+                     <asp:ListItem Value="Income Statement">Income Statement</asp:ListItem>
                  </asp:DropDownList>
              </asp:TableCell>
         </asp:TableRow>

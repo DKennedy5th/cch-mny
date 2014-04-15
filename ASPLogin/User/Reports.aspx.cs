@@ -14,17 +14,17 @@ public partial class User_Reports : System.Web.UI.Page
 
     protected void load_report(object sender, EventArgs e)
     {
+        int year = DateTime.Now.Year;
+        DateTime start = new DateTime(year, 1, 1);
         if (ReportSelection.SelectedValue == "Trial Balance")
         {
             //strtDate.SelectedDate = 28;
-            int year = DateTime.Now.Year;
-            DateTime start = new DateTime(year, 1, 1);
             //Server.Transfer("~/User/Trial Balance.aspx?field1=" + strtDate.SelectedDate + "&field2=" + endDate.SelectedDate, false);
             Server.Transfer("~/User/Trial Balance.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
         }
-        else
+        else if (ReportSelection.SelectedValue == "Income Statement")
         {
-            //reportGen.PostBackUrl = "~/User/Trial Balance.aspx";
+            Server.Transfer("~/User/Income Statement.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
         }
     }
 
