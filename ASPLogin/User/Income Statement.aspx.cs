@@ -183,14 +183,29 @@ public partial class User_Default : System.Web.UI.Page
         TableHeaderRow totalR = new TableHeaderRow();
         IncomeTable.Rows.Add(totalR);
         TableHeaderCell totalC = new TableHeaderCell();
-        totalC.Text = "Total: ";
+        totalC.Text = "  Total Expenses";
         totalR.Cells.Add(totalC);
+        TableHeaderCell blank = new TableHeaderCell();
+        totalR.Cells.Add(blank);
         TableHeaderCell totalDR = new TableHeaderCell();
-        totalDR.Text = "$" + drSum + ".00";
+        totalDR.Text = drSum + ".00";
+        totalDR.HorizontalAlign = HorizontalAlign.Right;
+        totalDR.Font.Underline = true;
         totalR.Cells.Add(totalDR);
+
+
+        TableHeaderRow ntIncm = new TableHeaderRow();
+        IncomeTable.Rows.Add(ntIncm);
         TableHeaderCell totalCR = new TableHeaderCell();
-        totalCR.Text = "$" + crSum + ".00";
-        totalR.Cells.Add(totalCR);
+        TableHeaderCell nthead = new TableHeaderCell();
+        nthead.Text = "Net Income ";
+        ntIncm.Cells.Add(nthead);
+        TableHeaderCell blank2 = new TableHeaderCell();
+        ntIncm.Cells.Add(blank2);
+        totalCR.Text = "$" + (crSum - drSum) + ".00";
+        totalCR.Font.Underline = true;
+        totalCR.HorizontalAlign = HorizontalAlign.Right;
+        ntIncm.Cells.Add(totalCR);
 
 
     }
