@@ -178,11 +178,11 @@ public partial class User_Default : System.Web.UI.Page
                             //accnt_balance += get_trans_credits(sender, e, tran_result, rdr["acct_id"].ToString());
                             if (rwcd == 0)
                             {
-                                tmpB.Text = "$" + accnt_balance.ToString();
+                                tmpB.Text = "$" + accnt_balance.ToString() + ".00";
                             }
                             else
                             {
-                                tmpB.Text = accnt_balance.ToString();
+                                tmpB.Text = accnt_balance.ToString() + ".00";
                             }
                             tmpBl.Text = "";
                             tmp.Cells.Add(tmpN);
@@ -210,11 +210,11 @@ public partial class User_Default : System.Web.UI.Page
                             crSum += accnt_balance;
                             if (rwcc == 0)
                             {
-                                tmpB.Text = "$" + accnt_balance.ToString();
+                                tmpB.Text = "$" + accnt_balance.ToString() + ".00";
                             }
                             else
                             {
-                                tmpB.Text = accnt_balance.ToString();
+                                tmpB.Text = accnt_balance.ToString() + ".00";
                             }
                             tmpBl.Text = "";
                             tmp.Cells.Add(tmpN);
@@ -237,10 +237,10 @@ public partial class User_Default : System.Web.UI.Page
         totalC.Text = "Total: ";
         totalR.Cells.Add(totalC);
         TableHeaderCell totalDR = new TableHeaderCell();
-        totalDR.Text = "$" + drSum;
+        totalDR.Text = "$" + drSum + ".00";
         totalR.Cells.Add(totalDR);
         TableHeaderCell totalCR = new TableHeaderCell();
-        totalCR.Text = "$" + crSum;
+        totalCR.Text = "$" + crSum + ".00";
         totalR.Cells.Add(totalCR);
 
 
