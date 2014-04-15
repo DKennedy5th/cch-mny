@@ -455,8 +455,8 @@ fieldset {
 
 .message-error {
     clear: both;
-    color: #e80c4d;
-    font-size: 1.1em;
+    color: #FF0000;
+    font-size: medium;
     font-weight: bold;
     margin: 20px 0 10px 0;
 }
@@ -474,8 +474,9 @@ fieldset {
 
 /* styles for validation helpers */
 .field-validation-error {
-    color: #e80c4d;
+    color: #FF0000;
     font-weight: bold;
+    font-size: medium;
 }
 
 .field-validation-valid {
@@ -733,3 +734,10 @@ tr.pager td {
         }
 }
 /* END: Mobile Styles */
+.newStyle1
+{
+    font-size: medium;
+    color: #FF0000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}

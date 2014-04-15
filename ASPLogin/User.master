@@ -13,6 +13,12 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <style type="text/css">
+        .auto-style1
+        {
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -45,7 +51,7 @@
                 <section id="login">
                     <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                         <LoggedInTemplate>
-                            <p>
+                            <p class="auto-style1">
                                 Hello, <a id="A2" runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
                                     <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
                                 </a>!
@@ -75,7 +81,7 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p>
-                    &copy; <%: DateTime.Now.Year %> - My ASP.NET Application
+                    &copy; <%: DateTime.Now.Year %> SPSU Team Cache Money Fall 2014 - My ASP.NET Application
                 </p>
             </div>
         </div>
