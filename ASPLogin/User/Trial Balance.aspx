@@ -13,9 +13,9 @@
     </asp:Table>
     <asp:Table ID="Table2" runat="server" Height="115px" Width="90%" EnableTheming="True" CellPadding="2" CellSpacing="2">
         <asp:TableRow HorizontalAlign="NotSet">
-            <asp:TableCell Font-Bold="true">Account Name</asp:TableCell>
-            <asp:TableCell Font-Bold="true">DR</asp:TableCell>
-            <asp:TableCell Font-Bold="true">CR</asp:TableCell>
+            <asp:TableCell Font-Bold="true" Font-Underline="true">Account Name</asp:TableCell>
+            <asp:TableCell Font-Bold="true" Width="15" HorizontalAlign="Center" Font-Underline="true">DR</asp:TableCell>
+            <asp:TableCell Font-Bold="true" Width="15" HorizontalAlign="Center" Font-Underline="true">CR</asp:TableCell>
         </asp:TableRow>
         
     </asp:Table>

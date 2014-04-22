@@ -117,11 +117,17 @@ public partial class User_Default : System.Web.UI.Page
                             crSum += accnt_balance;
                             if (rwcc == 0)
                             {
-                                tmpB.Text = "$" + accnt_balance.ToString() + ".00";
+                                //tmpB.Text = "$" + accnt_balance.ToString() + ".00";
+                                tmpB.Text = "$" + formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.HorizontalAlign = HorizontalAlign.Right;
+                                tmpB.Width = 20;
                             }
                             else
                             {
-                                tmpB.Text = accnt_balance.ToString() + ".00";
+                                //tmpB.Text = accnt_balance.ToString() + ".00";
+                                tmpB.Text = formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.HorizontalAlign = HorizontalAlign.Right;
+                                tmpB.Width = 20;
                             }
                             tmpBl.Text = "";
                             tmp.Cells.Add(tmpN);
@@ -157,11 +163,17 @@ public partial class User_Default : System.Web.UI.Page
                             //accnt_balance += get_trans_credits(sender, e, tran_result, rdr["acct_id"].ToString());
                             if (rwcd == 0)
                             {
-                                tmpB.Text = "$" + accnt_balance.ToString() + ".00";
+                                //tmpB.Text = "$" + accnt_balance.ToString() + ".00";
+                                tmpB.Text = "$" + formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.HorizontalAlign = HorizontalAlign.Right;
+                                tmpB.Width = 20;
                             }
                             else
                             {
-                                tmpB.Text = accnt_balance.ToString() + ".00";
+                                //tmpB.Text = accnt_balance.ToString() + ".00";
+                                tmpB.Text = formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.HorizontalAlign = HorizontalAlign.Right;
+                                tmpB.Width = 20;
                             }
                             tmpBl.Text = "";
                             tmp.Cells.Add(tmpN);
@@ -180,29 +192,31 @@ public partial class User_Default : System.Web.UI.Page
 
             con.Close();
         }
-        TableHeaderRow totalR = new TableHeaderRow();
+        TableRow totalR = new TableRow();
+        totalR.Font.Bold = true;
         IncomeTable.Rows.Add(totalR);
-        TableHeaderCell totalC = new TableHeaderCell();
+        TableCell totalC = new TableCell();
         totalC.Text = "  Total Expenses";
         totalR.Cells.Add(totalC);
-        TableHeaderCell blank = new TableHeaderCell();
+        TableCell blank = new TableCell();
         totalR.Cells.Add(blank);
-        TableHeaderCell totalDR = new TableHeaderCell();
-        totalDR.Text = drSum + ".00";
+        TableCell totalDR = new TableCell();
+        totalDR.Text = "$" + formatCommas(drSum.ToString()) + ".00";
         totalDR.HorizontalAlign = HorizontalAlign.Right;
         totalDR.Font.Underline = true;
         totalR.Cells.Add(totalDR);
 
 
-        TableHeaderRow ntIncm = new TableHeaderRow();
+        TableRow ntIncm = new TableRow();
+        ntIncm.Font.Bold = true;
         IncomeTable.Rows.Add(ntIncm);
-        TableHeaderCell totalCR = new TableHeaderCell();
-        TableHeaderCell nthead = new TableHeaderCell();
+        TableCell totalCR = new TableCell();
+        TableCell nthead = new TableCell();
         nthead.Text = "Net Income ";
         ntIncm.Cells.Add(nthead);
-        TableHeaderCell blank2 = new TableHeaderCell();
+        TableCell blank2 = new TableCell();
         ntIncm.Cells.Add(blank2);
-        totalCR.Text = "$" + (crSum - drSum) + ".00";
+        totalCR.Text = "$" + formatCommas((crSum - drSum).ToString()) + ".00";
         totalCR.Font.Underline = true;
         totalCR.HorizontalAlign = HorizontalAlign.Right;
         ntIncm.Cells.Add(totalCR);
@@ -279,6 +293,33 @@ public partial class User_Default : System.Web.UI.Page
             return accnt_sum;
         }
         
+    }
+
+
+
+    protected String formatCommas(String amount)
+    {
+        String accnt_balance_strng = amount;
+        bool wasNeg = false;
+        if (accnt_balance_strng.Substring(0, 1) == "-")
+        {
+            accnt_balance_strng = accnt_balance_strng.Substring(1, accnt_balance_strng.Length - 1);
+            wasNeg = true;
+        }
+
+        if (accnt_balance_strng.Length > 12)
+            accnt_balance_strng = accnt_balance_strng.Substring(0, (accnt_balance_strng.Length - 12)) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 12), 3) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 9), 3) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 6), 3) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 3), 3);
+        else if (accnt_balance_strng.Length > 9 && accnt_balance_strng.Length <= 12)
+            accnt_balance_strng = accnt_balance_strng.Substring(0, (accnt_balance_strng.Length - 9)) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 9), 3) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 6), 3) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 3), 3);
+        else if (accnt_balance_strng.Length > 6 && accnt_balance_strng.Length <= 9)
+            accnt_balance_strng = accnt_balance_strng.Substring(0, (accnt_balance_strng.Length - 6)) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 6), 3) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 3), 3);
+        else
+            accnt_balance_strng = accnt_balance_strng.Substring(0, (accnt_balance_strng.Length - 3)) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 3), 3);
+
+        if (wasNeg == false)
+            return accnt_balance_strng;
+        else
+            return "-" + accnt_balance_strng;
     }
 
 
