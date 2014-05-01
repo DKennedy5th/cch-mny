@@ -51,7 +51,7 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul>
-                                <li class="auto-style1"><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
+                                
                                 <li class="auto-style1"><a id="loginLink" runat="server" href="~/Login.aspx">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
