@@ -44,7 +44,7 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a id="A1" runat="server" href="~/"><img src="images/cacheLogo.jpg"></a></p>
+                    <a id="A1" runat="server" href="~/Manager/Default.aspx"><img src="images/cacheLogo.jpg"></a></p>
             </div>
             <div class="float-right">
                 <section id="login">
@@ -61,7 +61,7 @@
                 </section>
                 <nav>
                     <ul id="menu">
-                        <li><a id="A3" runat="server" href="~/Manager/Default.aspx">Account Home</a></li>
+                        <li><a id="A3" runat="server" href="~/Manager/Default.aspx">Manager Home</a></li>
                         <li><a id="A6" runat="server" href="~/Manager/ChartAccounts.aspx">Chart of Accounts</a></li>
                         <li><a id="A4" runat="server" href="~/Manager/Reports.aspx">Reports</a></li>
                     </ul>
