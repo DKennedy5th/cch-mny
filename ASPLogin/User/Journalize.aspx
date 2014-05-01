@@ -53,7 +53,7 @@
         </Scripts>
     </asp:ScriptManager>
 
-    <header> 
+    <header>
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
@@ -95,9 +95,6 @@
         
         <section class="content-wrapper main-content clear-fix">
 
-            <h1><span class="label">Journalize Transactions</span></h1>
-            <br />
-
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">             
         <ContentTemplate>
             <table class="auto-style1">
@@ -122,7 +119,7 @@
                         <tr>
                             <td>
 
-                                <span class="auto-style7">Description</span>
+                                <span class="auto-style7">Description: </span>
 
                     <asp:TextBox ID="DescriptionTextBox" runat="server"></asp:TextBox>
 
@@ -130,9 +127,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="auto-style7">Upload an Image</span><asp:FileUpload ID="FileUpload1" runat="server" />
-                               
-                                <br />
+                                <span class="auto-style7">Upload Source Document:</span>
+                                <asp:FileUpload ID="FileUpload1" runat="server" />
                             </td>
                         </tr>
                     </table>
@@ -140,7 +136,7 @@
 
         <br />
     <asp:Button ID="btnAddTextBox" runat="server"  Text="Add Entry Field" OnClick="btnAddTextBox_Click" />
-    <asp:Button ID="Button1" runat="server"  Text="Add Entry Field" OnClick="btnAddTextBox_Click" />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Remove Entry Field" />
     <br /><br />
         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>

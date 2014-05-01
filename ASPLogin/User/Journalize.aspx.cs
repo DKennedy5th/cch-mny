@@ -165,28 +165,6 @@ public partial class User_Journalize : System.Web.UI.Page
                     cmd1.ExecuteNonQuery();
                     con.Close();
                 }
-
-                //add to event log
-                Int32 k;
-                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-                {
-                    con.Open();
-                    SqlCommand cmd1 = new SqlCommand("Select top 1 event_id from EventLog order by event_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
-                    k = (Int32)cmd1.ExecuteScalar();
-
-                    con.Close();
-                }
-                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-                {
-                    con.Open();
-                    SqlCommand cmd1 = new SqlCommand("insert into EventLog values('" + Page.User.Identity.Name + "','Created Transaction','" + DateTime.Now + "','" + (j + 1) + "',NULL,NULL,NULL,NULL,'" + (k + 1) + "')", con);
-                    cmd1.ExecuteNonQuery();
-                    con.Close();
-                }
-
-
-
-
                 
                 for (counter = 0; counter < myCount; counter += 1)
                 {
@@ -229,6 +207,8 @@ public partial class User_Journalize : System.Web.UI.Page
 
 
                 MyLabel.Text = "Entry is now pending approval";
+                myCount = 2;
+                Response.Redirect("~/User/Journalize.aspx");
             }
 
             
@@ -263,28 +243,14 @@ public partial class User_Journalize : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string acct_type;
-        string uname = Page.User.Identity.Name;
-        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-        {
-            con.Open();
-            SqlCommand cmd1 = new SqlCommand("Select type_of_account from userAccounts where username like '" + uname + "' ", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
-            acct_type = (string)cmd1.ExecuteScalar();
-
-            con.Close();
-        }
-        if (acct_type.Equals("Manager"))
-        {
-            Response.Redirect("~/Manager/Default.aspx");
-        }
-        if (acct_type.Equals("Admin"))
-        {
-            Response.Redirect("~/Admin/Default.aspx");
-        }
 
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-
+        if (myCount > 2)
+        {
+            myCount = myCount - 1;
+        }
+        
     }
 }
