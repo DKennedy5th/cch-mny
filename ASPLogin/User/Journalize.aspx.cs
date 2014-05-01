@@ -165,6 +165,28 @@ public partial class User_Journalize : System.Web.UI.Page
                     cmd1.ExecuteNonQuery();
                     con.Close();
                 }
+
+                //add to event log
+                Int32 k;
+                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+                {
+                    con.Open();
+                    SqlCommand cmd1 = new SqlCommand("Select top 1 event_id from EventLog order by event_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                    k = (Int32)cmd1.ExecuteScalar();
+
+                    con.Close();
+                }
+                using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+                {
+                    con.Open();
+                    SqlCommand cmd1 = new SqlCommand("insert into EventLog values('" + Page.User.Identity.Name + "','Created Transaction','" + DateTime.Now + "','" + (j + 1) + "',NULL,NULL,NULL,NULL,'" + (k + 1) + "')", con);
+                    cmd1.ExecuteNonQuery();
+                    con.Close();
+                }
+
+
+
+
                 
                 for (counter = 0; counter < myCount; counter += 1)
                 {

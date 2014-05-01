@@ -78,6 +78,24 @@ public partial class Admin_EditUsers : System.Web.UI.Page
                 con.Close();
             }
         }
+        //event log
+        Int32 k;
+        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+        {
+            con.Open();
+            SqlCommand cmd1 = new SqlCommand("Select top 1 event_id from EventLog order by event_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+            k = (Int32)cmd1.ExecuteScalar();
+
+            con.Close();
+        }
+        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+        {
+            con.Open();
+            SqlCommand cmd1 = new SqlCommand("insert into EventLog values('" + Page.User.Identity.Name + "','Edited User Account','" + DateTime.Now + "',NULL,NULL,'" + GridView1.Rows[0].Cells[0].Text + "','" + DropDownList1.Text +"',NULL,'" + (k + 1) + "')", con);
+            cmd1.ExecuteNonQuery();
+            con.Close();
+        }
+
 
         Response.Redirect("~/Admin/EditUsers.aspx?username=" + GridView1.Rows[0].Cells[0].Text);
 

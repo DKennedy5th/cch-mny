@@ -43,36 +43,6 @@
     <table class="auto-style1">
         <tr>
             <td class="auto-style2">
-                Update Account Type</td>
-            <td>
-                <asp:DropDownList ID="DropDownList1" runat="server">
-                <asp:ListItem>Assets</asp:ListItem>
-                <asp:ListItem>Liabilities</asp:ListItem>
-                <asp:ListItem>Equity</asp:ListItem>
-                <asp:ListItem>Revenue Account</asp:ListItem>
-                <asp:ListItem>Cost of Sales</asp:ListItem>
-                <asp:ListItem>Expenses</asp:ListItem>
-                <asp:ListItem>Gain on Sale of Assets</asp:ListItem>
-                <asp:ListItem>Losses on Sale of Assets</asp:ListItem>
-            </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">
-                Update Account Name</td>
-            <td>
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">
-                Update Account Balance</td>
-            <td>
-                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">
                 Update Active Status</td>
             <td>
                 <asp:DropDownList ID="DropDownList2" runat="server">

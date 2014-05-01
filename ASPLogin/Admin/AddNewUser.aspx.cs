@@ -151,11 +151,30 @@ public partial class Admin_AddNewUser : System.Web.UI.Page
 
         if(validEntry == true)
         {
+            //add user to db
             using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
             {
                 con.Open();
 
                 SqlCommand cmd1 = new SqlCommand("insert into userAccounts values('" + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox4.Text + "','" + TextBox5.Text + "','"+ DropDownList1.Text +"','1','Sample to Update Later', '3','0',NULL)", con);
+                cmd1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            //EventLog
+            Int32 i;
+            using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+            {
+                con.Open();
+                SqlCommand cmd1 = new SqlCommand("Select top 1 event_id from EventLog order by event_id DESC", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+                i = (Int32)cmd1.ExecuteScalar();
+
+                con.Close();
+            }
+            using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+            {
+                con.Open();
+                SqlCommand cmd1 = new SqlCommand("insert into EventLog values('" + Page.User.Identity.Name + "','Created User','" + DateTime.Now + "',NULL,NULL,NULL,NULL,NULL,'"+ (i+1) +"')", con);
                 cmd1.ExecuteNonQuery();
                 con.Close();
             }
