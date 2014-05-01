@@ -15,6 +15,7 @@
                      <asp:ListItem>Select Type</asp:ListItem>
                      <asp:ListItem Value="Trial Balance">Trial Balance</asp:ListItem>
                      <asp:ListItem Value="Income Statement">Income Statement</asp:ListItem>
+                     <asp:ListItem Value="Balance Sheet">Balance Sheet</asp:ListItem>
                  </asp:DropDownList>
              </asp:TableCell>
         </asp:TableRow>

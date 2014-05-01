@@ -44,6 +44,10 @@ public partial class User_Reports : System.Web.UI.Page
         {
             Server.Transfer("~/User/Income Statement.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
         }
+        else if (ReportSelection.SelectedValue == "Balance Sheet")
+        {
+            Server.Transfer("~/User/Balance Sheet.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
+        }
     }
 
 }
