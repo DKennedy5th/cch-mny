@@ -40,52 +40,6 @@ public partial class User_Default : System.Web.UI.Page
         endLbl.Text = Convert.ToString(end);
     }
 
-    protected float CRSum(object sender, EventArgs e)
-    {
-        SqlDataReader rdr;
-        float sum = 0;
-        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-        {
-            con.Open();
-            SqlCommand cmd1 = new SqlCommand("SELECT acct_bal FROM Accounts WHERE acct_type = 'Equity' OR acct_type = 'Liabilities' OR acct_type = 'Revenue Account'", con);
-            rdr = cmd1.ExecuteReader();
-
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    float num = Convert.ToSingle(rdr["acct_bal"]);
-                    sum += num;
-                }
-            }
-            con.Close();
-        }
-        return sum;
-    }
-
-    protected float DRSum(object sender, EventArgs e)
-    {
-        SqlDataReader rdr;
-        float sum = 0;
-        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-        {
-            con.Open();
-            SqlCommand cmd1 = new SqlCommand("SELECT acct_bal FROM Accounts WHERE acct_type = 'Assets' OR acct_type = 'Expenses'", con);
-            rdr = cmd1.ExecuteReader();
-
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    float num = Convert.ToSingle(rdr["acct_bal"]);
-                    sum += num;
-                }
-            }
-            con.Close();
-        }
-        return sum;
-    }
-
 
     protected void load_fields(object sender, EventArgs e)
     {
@@ -208,9 +162,25 @@ public partial class User_Default : System.Web.UI.Page
                             else
                             {
                                 //tmpB.Text = accnt_balance.ToString() + ".00";
+                                /*
                                 String accnt_bal_strng = accnt_balance.ToString();
                                 if (accnt_bal_strng.Length > 3)
                                     accnt_bal_strng = formatCommas(accnt_bal_strng) + ".00";
+                                */
+
+                                String accnt_bal_strng = accnt_balance.ToString("F2");
+                                String accnt_bal_cents = accnt_bal_strng.Substring(accnt_bal_strng.Length - 3, 3);
+                                accnt_bal_strng = accnt_bal_strng.Substring(0, accnt_bal_strng.Length - 3);
+                                if (accnt_bal_strng.Length > 3)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+
+                                if (rwcd == 0)
+                                    tmpB.Text = "$" + accnt_bal_strng;
+                                else
+                                    tmpB.Text = accnt_bal_strng;
+
                                 tmpB.Text = accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;

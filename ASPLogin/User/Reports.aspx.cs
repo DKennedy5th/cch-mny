@@ -20,6 +20,7 @@ public partial class User_Reports : System.Web.UI.Page
 
             con.Close();
         }
+        
         if (acct_type.Equals("Manager"))
         {
             Response.Redirect("~/Manager/Default.aspx");
@@ -28,6 +29,7 @@ public partial class User_Reports : System.Web.UI.Page
         {
             Response.Redirect("~/Admin/Default.aspx");
         }
+         
     }
 
     protected void load_report(object sender, EventArgs e)
@@ -47,6 +49,10 @@ public partial class User_Reports : System.Web.UI.Page
         else if (ReportSelection.SelectedValue == "Balance Sheet")
         {
             Server.Transfer("~/User/Balance Sheet.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
+        }
+        else if (ReportSelection.SelectedValue == "Statement of Retained Earnings")
+        {
+            Server.Transfer("~/User/Retained Earnings.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
         }
     }
 

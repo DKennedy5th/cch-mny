@@ -37,53 +37,7 @@ public partial class User_Default : System.Web.UI.Page
         load_income(sender, e, start, end);
     }
 
-    protected float CRSum(object sender, EventArgs e)
-    {
-        SqlDataReader rdr;
-        float sum = 0;
-        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-        {
-            con.Open();
-            SqlCommand cmd1 = new SqlCommand("SELECT acct_bal FROM Accounts WHERE acct_type = 'Equity' OR acct_type = 'Liabilities' OR acct_type = 'Revenue Account'", con);
-            rdr = cmd1.ExecuteReader();
-
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    float num = Convert.ToSingle(rdr["acct_bal"]);
-                    sum += num;
-                }
-            }
-            con.Close();
-        }
-        return sum;
-    }
-
-    protected float DRSum(object sender, EventArgs e)
-    {
-        SqlDataReader rdr;
-        float sum = 0;
-        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-        {
-            con.Open();
-            SqlCommand cmd1 = new SqlCommand("SELECT acct_bal FROM Accounts WHERE acct_type = 'Assets' OR acct_type = 'Expenses'", con);
-            rdr = cmd1.ExecuteReader();
-
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    float num = Convert.ToSingle(rdr["acct_bal"]);
-                    sum += num;
-                }
-            }
-            con.Close();
-        }
-        return sum;
-    }
-
-
+    
     protected void load_income(object sender, EventArgs e, DateTime strt, DateTime endd)
     {
         float crSum = 0;
@@ -104,8 +58,8 @@ public partial class User_Default : System.Web.UI.Page
                     DateTime accntDate = Convert.ToDateTime(rdr["created_at"]);
                     int resultStart = DateTime.Compare(strt, accntDate);
                     int resultEnd = DateTime.Compare(endd, accntDate);
-                    String stupid = rdr["acct_start_bal"].ToString();
-                    float accnt_balance = Convert.ToSingle(stupid);
+                    String accntBal = rdr["acct_start_bal"].ToString();
+                    float accnt_balance = Convert.ToSingle(accntBal);
                     if (resultStart <= 0 && resultEnd >= 0)
                     {
                         if (rdr["acct_type"].ToString() == "Revenue Account")
@@ -124,18 +78,16 @@ public partial class User_Default : System.Web.UI.Page
                             TableCell tmpB = new TableCell();
                             TableCell tmpBl = new TableCell();
 
-                            tmpN.Text = rdr["acct_name"].ToString();
+                            tmpN.Text = "&nbsp; &nbsp; &nbsp;" + rdr["acct_name"].ToString();
 
                             List<String> tran_result = get_transaction(sender, e, strt, endd);
                             foreach (String rslt in tran_result)
                             {
-                                //float accnt_balance = get_trans_credits(sender, e, tran_result, rdr["acct_id"].ToString());
                                 accnt_balance += get_trans_credits(sender, e, rslt, rdr["acct_id"].ToString(), "Credit");
                             }
                             crSum += accnt_balance;
                             if (rwcc == 0)
                             {
-                                //tmpB.Text = "$" + accnt_balance.ToString() + ".00";
                                 tmpB.Text = "$" + formatCommas(accnt_balance.ToString()) + ".00";
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;
@@ -169,7 +121,7 @@ public partial class User_Default : System.Web.UI.Page
                             TableCell tmpB = new TableCell();
                             TableCell tmpBl = new TableCell();
 
-                            tmpN.Text = rdr["acct_name"].ToString();
+                            tmpN.Text = "&nbsp;&nbsp;&nbsp;" + rdr["acct_name"].ToString();
 
                             List<String> tran_result = get_transaction(sender, e, strt, endd);
                             foreach (String rslt in tran_result)
@@ -317,7 +269,14 @@ public partial class User_Default : System.Web.UI.Page
 
     protected String formatCommas(String amount)
     {
-        String accnt_balance_strng = amount;
+        String accnt_balance_strng = "";
+
+        if (amount.Length > 3)
+            accnt_balance_strng = amount;
+        else if (amount.Length <= 3)
+            return amount;
+            //return "";
+
         bool wasNeg = false;
         if (accnt_balance_strng.Substring(0, 1) == "-")
         {

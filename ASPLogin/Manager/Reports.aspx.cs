@@ -44,6 +44,10 @@ public partial class User_Reports : System.Web.UI.Page
         {
             Server.Transfer("~/Manager/Income Statement.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
         }
+        else if (ReportSelection.SelectedValue == "Event Report")
+        {
+            Server.Transfer("~/Manager/Event Report.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
+        }
     }
 
 }

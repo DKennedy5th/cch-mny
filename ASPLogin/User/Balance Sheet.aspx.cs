@@ -138,10 +138,20 @@ public partial class User_Default : System.Web.UI.Page
                             String accnt_bal_strng = accnt_balance.ToString("F2");
                             String accnt_bal_cents = accnt_bal_strng.Substring(accnt_bal_strng.Length - 3, 3);
                             accnt_bal_strng = accnt_bal_strng.Substring(0, accnt_bal_strng.Length - 3);
-                            if (accnt_bal_strng.Length > 3)
-                                accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                            if (accnt_bal_strng.Substring(0, 1) != "-")
+                            {
+                                if (accnt_bal_strng.Length > 3)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
                             else
-                                accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            {
+                                if (accnt_bal_strng.Length > 4)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
 
                             if (rwcd == 0)
                                 tmpB.Text = "$" + accnt_bal_strng;
@@ -239,12 +249,22 @@ public partial class User_Default : System.Web.UI.Page
                             String accnt_bal_strng = accnt_balance.ToString("F2");
                             String accnt_bal_cents = accnt_bal_strng.Substring(accnt_bal_strng.Length - 3, 3);
                             accnt_bal_strng = accnt_bal_strng.Substring(0, accnt_bal_strng.Length - 3);
-                            if (accnt_bal_strng.Length > 3)
-                                accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                            if (accnt_bal_strng.Substring(0, 1) != "-")
+                            {
+                                if (accnt_bal_strng.Length > 3)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
                             else
-                                accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            {
+                                if (accnt_bal_strng.Length > 4)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
 
-                            if (rwcd == 0)
+                            if (rwcc == 0)
                                 tmpB.Text = "$" + accnt_bal_strng;
                             else
                                 tmpB.Text = accnt_bal_strng;
@@ -382,7 +402,7 @@ public partial class User_Default : System.Web.UI.Page
                             else
                                 accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
 
-                            if (rwcd == 0)
+                            if (rwcc2 == 0)
                                 tmpB.Text = "$" + accnt_bal_strng;
                             else
                                 tmpB.Text = accnt_bal_strng;
@@ -443,6 +463,7 @@ public partial class User_Default : System.Web.UI.Page
             sumBlnk.Text = "";
             sum.Text = "$" + formatCommas(tLESumString) + tLESumCents;
             sum.Font.Underline = true;
+            sum.HorizontalAlign = HorizontalAlign.Right;
             tLESumR.Cells.Add(sumTxt);
             tLESumR.Cells.Add(sumBlnk);
             tLESumR.Cells.Add(sum);
@@ -593,8 +614,8 @@ public partial class User_Default : System.Web.UI.Page
 
         if (amount.Length > 3)
             accnt_balance_strng = amount;
-        else
-            return "";
+        else if (amount.Length <= 3)
+            return amount; 
 
         bool wasNeg = false;
         if (accnt_balance_strng.Substring(0, 1) == "-")
