@@ -35,77 +35,13 @@ public partial class User_Default : System.Web.UI.Page
         DateTime start = Convert.ToDateTime(s1);
         DateTime end = Convert.ToDateTime(s2);
         asOf.Text = end.ToLongDateString();
-        load_fields2(sender, e, start, end);
+        load_fields(sender, e, start, end);
         strtLbl.Text = Convert.ToString(start);
         endLbl.Text = Convert.ToString(end);
     }
 
 
-    protected void load_fields(object sender, EventArgs e)
-    {
-        SqlDataReader rdr;
-        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
-        {
-            con.Open();
-            SqlCommand cmd1 = new SqlCommand("SELECT acct_name, acct_bal, acct_type FROM Accounts", con);
-            rdr = cmd1.ExecuteReader();
-
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    if (rdr["acct_type"].ToString()=="Assets" || rdr["acct_type"].ToString()=="Expenses")
-                    {
-                        TableRow tmp = new TableRow();
-                        Table2.Rows.Add(tmp);
-                        TableCell tmpN = new TableCell();
-                        TableCell tmpB = new TableCell();
-                        TableCell tmpBl = new TableCell();
-                        tmpN.Text = rdr["acct_name"].ToString();
-                        tmpB.Text = rdr["acct_bal"].ToString();
-                        tmpBl.Text = "";
-                        tmp.Cells.Add(tmpN);
-                        tmp.Cells.Add(tmpB);
-                        tmp.Cells.Add(tmpBl);
-                    }
-
-                    else if (rdr["acct_type"].ToString() == "Equity" || rdr["acct_type"].ToString() == "Liabilities" || rdr["acct_type"].ToString() == "Revenue Account")
-                    {
-                        TableRow tmp = new TableRow();
-                        Table2.Rows.Add(tmp);
-                        TableCell tmpN = new TableCell();
-                        TableCell tmpB = new TableCell();
-                        TableCell tmpBl = new TableCell();
-                        tmpN.Text = rdr["acct_name"].ToString();
-                        tmpB.Text = rdr["acct_bal"].ToString();
-                        tmpBl.Text = "";
-                        tmp.Cells.Add(tmpN);
-                        tmp.Cells.Add(tmpBl);
-                        tmp.Cells.Add(tmpB);
-                    }
-                }
-            }
-            //cmd1.ExecuteNonQuery();
-
-
-            con.Close();
-        }
-        TableHeaderRow totalR = new TableHeaderRow();
-        Table2.Rows.Add(totalR);
-        TableHeaderCell totalC = new TableHeaderCell();
-        totalC.Text = "Total: ";
-        totalR.Cells.Add(totalC);
-        TableHeaderCell totalDR = new TableHeaderCell();
-        totalDR.Text = "$" + DRSum(sender, e);
-        totalR.Cells.Add(totalDR);
-        TableHeaderCell totalCR = new TableHeaderCell();
-        totalCR.Text = "$" + CRSum(sender, e);
-        totalR.Cells.Add(totalCR);
-
-
-    }
-
-    protected void load_fields2(object sender, EventArgs e, DateTime strt, DateTime endd)
+    protected void load_fields(object sender, EventArgs e, DateTime strt, DateTime endd)
     {
         float crSum = 0;
         float drSum = 0;
@@ -161,13 +97,6 @@ public partial class User_Default : System.Web.UI.Page
                             }
                             else
                             {
-                                //tmpB.Text = accnt_balance.ToString() + ".00";
-                                /*
-                                String accnt_bal_strng = accnt_balance.ToString();
-                                if (accnt_bal_strng.Length > 3)
-                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + ".00";
-                                */
-
                                 String accnt_bal_strng = accnt_balance.ToString("F2");
                                 String accnt_bal_cents = accnt_bal_strng.Substring(accnt_bal_strng.Length - 3, 3);
                                 accnt_bal_strng = accnt_bal_strng.Substring(0, accnt_bal_strng.Length - 3);
@@ -225,8 +154,6 @@ public partial class User_Default : System.Web.UI.Page
                                 String accnt_bal_strng = accnt_balance.ToString();
                                 if (accnt_bal_strng.Length > 3)
                                     accnt_bal_strng = formatCommas(accnt_bal_strng) + ".00";
-                                    //accnt_balance_strng = accnt_balance_strng.Substring(0, (accnt_balance_strng.Length - 3)) + "," + accnt_balance_strng.Substring((accnt_balance_strng.Length - 3), 3);
-                                //tmpB.Text = accnt_balance.ToString() + ".00";
                                 tmpB.Text = accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;

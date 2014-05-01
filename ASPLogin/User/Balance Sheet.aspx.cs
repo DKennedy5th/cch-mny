@@ -476,7 +476,6 @@ public partial class User_Default : System.Web.UI.Page
     protected List<String> get_transaction(object sender, EventArgs e, DateTime strt, DateTime endd)
     {
         List<String> results = new List<String>();
-        //int i = 0;
         SqlDataReader trans_rdr;
         using (SqlConnection conn = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
         {
@@ -495,15 +494,12 @@ public partial class User_Default : System.Web.UI.Page
                     if (resultStart <= 0 && resultEnd >= 0)
                     {
 
-                        //results[i] = trans_rdr["trans_id"].ToString();.
                         results.Add(trans_rdr["trans_id"].ToString());
-                        //i++;
                     }
 
                 }
             }
         }
-        //return ""; // Blank string returned if no applicable transactions are found.
         return results;
     }
 
@@ -521,12 +517,9 @@ public partial class User_Default : System.Web.UI.Page
             {
                 while (ind_trans_rdr.Read())
                 {
-                    //String test1 = ind_trans_rdr["trans_id"].ToString();
                     String test2 = ind_trans_rdr["acct_id"].ToString();
-                    //if (ind_trans_rdr["trans_id"].ToString() == trans_ID && ind_trans_rdr["acct_id"].ToString() == acct_ID)
                     if (ind_trans_rdr["acct_id"].ToString() == acct_ID)
                     {
-                        //return ind_trans_rdr["trans_id"].ToString();
                         String test3 = ind_trans_rdr["amount"].ToString();
                         float num = Convert.ToSingle(ind_trans_rdr["amount"]);
                         if (ind_trans_rdr["debit_credit"].ToString() == acct_TYPE)

@@ -86,16 +86,35 @@ public partial class User_Default : System.Web.UI.Page
                                 accnt_balance += get_trans_credits(sender, e, rslt, rdr["acct_id"].ToString(), "Credit");
                             }
                             crSum += accnt_balance;
+
+                            String accnt_bal_strng = accnt_balance.ToString("F2");
+                            String accnt_bal_cents = accnt_bal_strng.Substring(accnt_bal_strng.Length - 3, 3);
+                            accnt_bal_strng = accnt_bal_strng.Substring(0, accnt_bal_strng.Length - 3);
+                            if (accnt_bal_strng.Substring(0, 1) != "-")
+                            {
+                                if (accnt_bal_strng.Length > 3)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
+                            else
+                            {
+                                if (accnt_bal_strng.Length > 4)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
+
                             if (rwcc == 0)
                             {
-                                tmpB.Text = "$" + formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.Text = "$" + accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;
                             }
                             else
                             {
                                 //tmpB.Text = accnt_balance.ToString() + ".00";
-                                tmpB.Text = formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.Text = accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;
                             }
@@ -130,18 +149,36 @@ public partial class User_Default : System.Web.UI.Page
                                 accnt_balance += get_trans_credits(sender, e, rslt, rdr["acct_id"].ToString(), "Debit");
                             }
                             drSum += accnt_balance;
-                            //accnt_balance += get_trans_credits(sender, e, tran_result, rdr["acct_id"].ToString());
+
+                            String accnt_bal_strng = accnt_balance.ToString("F2");
+                            String accnt_bal_cents = accnt_bal_strng.Substring(accnt_bal_strng.Length - 3, 3);
+                            accnt_bal_strng = accnt_bal_strng.Substring(0, accnt_bal_strng.Length - 3);
+                            if (accnt_bal_strng.Substring(0, 1) != "-")
+                            {
+                                if (accnt_bal_strng.Length > 3)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
+                            else
+                            {
+                                if (accnt_bal_strng.Length > 4)
+                                    accnt_bal_strng = formatCommas(accnt_bal_strng) + accnt_bal_cents;
+                                else
+                                    accnt_bal_strng = accnt_bal_strng + accnt_bal_cents;
+                            }
+
                             if (rwcd == 0)
                             {
                                 //tmpB.Text = "$" + accnt_balance.ToString() + ".00";
-                                tmpB.Text = "$" + formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.Text = "$" + accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;
                             }
                             else
                             {
                                 //tmpB.Text = accnt_balance.ToString() + ".00";
-                                tmpB.Text = formatCommas(accnt_balance.ToString()) + ".00";
+                                tmpB.Text = accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;
                             }
@@ -171,7 +208,10 @@ public partial class User_Default : System.Web.UI.Page
         TableCell blank = new TableCell();
         totalR.Cells.Add(blank);
         TableCell totalDR = new TableCell();
-        totalDR.Text = "$" + formatCommas(drSum.ToString()) + ".00";
+        String drSumString = drSum.ToString("F2");
+        String drSumCents = drSumString.Substring(drSumString.Length - 3, 3);
+        drSumString = drSumString.Substring(0, drSumString.Length - 3);
+        totalDR.Text = "$" + formatCommas((drSumString).ToString()) + drSumCents;
         totalDR.HorizontalAlign = HorizontalAlign.Right;
         totalDR.Font.Underline = true;
         totalR.Cells.Add(totalDR);
@@ -186,7 +226,11 @@ public partial class User_Default : System.Web.UI.Page
         ntIncm.Cells.Add(nthead);
         TableCell blank2 = new TableCell();
         ntIncm.Cells.Add(blank2);
-        totalCR.Text = "$" + formatCommas((crSum - drSum).ToString()) + ".00";
+        float tSum = crSum - drSum;
+        String tSumString = tSum.ToString("F2");
+        String tSumCents = tSumString.Substring(tSumString.Length - 3, 3);
+        tSumString = tSumString.Substring(0, tSumString.Length - 3);
+        totalCR.Text = "$" + formatCommas((tSumString).ToString()) + tSumCents;
         totalCR.Font.Underline = true;
         totalCR.HorizontalAlign = HorizontalAlign.Right;
         ntIncm.Cells.Add(totalCR);
