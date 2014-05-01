@@ -170,14 +170,12 @@ public partial class User_Default : System.Web.UI.Page
 
                             if (rwcd == 0)
                             {
-                                //tmpB.Text = "$" + accnt_balance.ToString() + ".00";
                                 tmpB.Text = "$" + accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;
                             }
                             else
                             {
-                                //tmpB.Text = accnt_balance.ToString() + ".00";
                                 tmpB.Text = accnt_bal_strng;
                                 tmpB.HorizontalAlign = HorizontalAlign.Right;
                                 tmpB.Width = 20;
@@ -194,7 +192,6 @@ public partial class User_Default : System.Web.UI.Page
 
                 }
             }
-            //cmd1.ExecuteNonQuery();
 
 
             con.Close();

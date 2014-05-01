@@ -49,6 +49,79 @@ public partial class User_Default : System.Web.UI.Page
         prvRE.Cells.Add(prevRetEnDate);
         prevRetEn.HorizontalAlign = HorizontalAlign.Right;
         prvRE.Cells.Add(prevRetEn);
+
+        TableRow NetIncome = new TableRow();
+        RetainedEarnTable.Rows.Add(NetIncome);
+        TableCell NetIncomeText = new TableCell();
+        NetIncomeText.Text = "Add: Net income";
+        TableCell NetIncomeAmnt = new TableCell();
+        float net = get_income(sender, e, strt, endd);
+        String net_string = net.ToString("F2");
+        String net_cents = net_string.Substring(net_string.Length - 3, 3);
+        net_string = net_string.Substring(0, net_string.Length - 3);
+        NetIncomeAmnt.Text = formatCommas(net_string) + net_cents;
+        NetIncomeAmnt.HorizontalAlign = HorizontalAlign.Right;
+        NetIncome.Cells.Add(NetIncomeText);
+        NetIncome.Cells.Add(NetIncomeAmnt);
+
+
+
+
+    }
+
+
+    protected float get_income(object sender, EventArgs e, DateTime strt, DateTime endd)
+    {
+        float crSum = 0;
+        float drSum = 0;
+        SqlDataReader rdr;
+        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+        {
+            con.Open();
+            SqlCommand cmd1 = new SqlCommand("SELECT acct_name, acct_bal, acct_start_bal, created_at, acct_id, acct_type FROM Accounts", con);
+            rdr = cmd1.ExecuteReader();
+
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    DateTime accntDate = Convert.ToDateTime(rdr["created_at"]);
+                    int resultStart = DateTime.Compare(strt, accntDate);
+                    int resultEnd = DateTime.Compare(endd, accntDate);
+                    String accntBal = rdr["acct_start_bal"].ToString();
+                    float accnt_balance = Convert.ToSingle(accntBal);
+                    if (resultStart <= 0 && resultEnd >= 0)
+                    {
+                        if (rdr["acct_type"].ToString() == "Revenue Account")
+                        {
+                            List<String> tran_result = get_transaction(sender, e, strt, endd);
+                            foreach (String rslt in tran_result)
+                            {
+                                accnt_balance += get_trans_credits(sender, e, rslt, rdr["acct_id"].ToString(), "Credit");
+                            }
+                            crSum += accnt_balance;
+                        }
+                        else if (rdr["acct_type"].ToString() == "Expenses")
+                        {
+                            List<String> tran_result = get_transaction(sender, e, strt, endd);
+                            foreach (String rslt in tran_result)
+                            {
+                                //float accnt_balance = get_trans_credits(sender, e, tran_result, rdr["acct_id"].ToString());
+                                accnt_balance += get_trans_credits(sender, e, rslt, rdr["acct_id"].ToString(), "Debit");
+                            }
+                            drSum += accnt_balance;                                                    
+                        }
+
+
+                    }
+
+                }
+            }
+            con.Close();
+        }
+        float tSum =0;
+        tSum = crSum - drSum;
+        return tSum;
     }
 
 
