@@ -78,11 +78,11 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="acct_id" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="acct_id" HeaderText="acct_id" ReadOnly="True" SortExpression="acct_id" />
-                    <asp:BoundField DataField="acct_type" HeaderText="acct_type" SortExpression="acct_type" />
-                    <asp:BoundField DataField="acct_name" HeaderText="acct_name" SortExpression="acct_name" />
-                    <asp:BoundField DataField="acct_bal" HeaderText="acct_bal" SortExpression="acct_bal" DataFormatString="&quot;{0:c}&quot;" />
-                    <asp:BoundField DataField="active" HeaderText="active" SortExpression="active" />
+                    <asp:BoundField DataField="acct_id" HeaderText="Account ID" ReadOnly="True" SortExpression="acct_id" />
+                    <asp:BoundField DataField="acct_type" HeaderText="Account Type" SortExpression="acct_type" />
+                    <asp:BoundField DataField="acct_name" HeaderText="Account Name" SortExpression="acct_name" />
+                    <asp:BoundField DataField="acct_bal" HeaderText="Account Balance" SortExpression="acct_bal" DataFormatString="{0:c}" />
+                    <asp:BoundField DataField="active" HeaderText="Active?" SortExpression="active" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

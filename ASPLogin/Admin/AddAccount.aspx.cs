@@ -87,7 +87,7 @@ public partial class Admin_AddAccount : System.Web.UI.Page
             using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("insert into Accounts values('" + (i + 1) + "','" + DropDownList1.Text + "','Report_Type','" + Page.User.Identity.Name + "','" + DateTime.Now + "','" + TextBox1.Text + "','" + Int32.Parse(TextBox2.Text) + "','" + Int32.Parse(TextBox2.Text) + "','" + DropDownList2.Text + "','" + Page.User.Identity.Name + "','" + DateTime.Now + "','" + DateTime.Now + "','" + Page.User.Identity.Name + "','" + debit_credit + "')", con);
+                SqlCommand cmd = new SqlCommand("insert into Accounts values('" + (i + 1) + "','" + DropDownList1.Text + "','Report_Type','" + Page.User.Identity.Name + "','" + DateTime.Now + "','" + TextBox1.Text + "','" + float.Parse(TextBox2.Text) + "','" + float.Parse(TextBox2.Text) + "','" + DropDownList2.Text + "','" + Page.User.Identity.Name + "','" + DateTime.Now + "','" + DateTime.Now + "','" + Page.User.Identity.Name + "','" + debit_credit + "')", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
