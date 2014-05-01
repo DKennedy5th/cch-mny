@@ -25,6 +25,9 @@
         .auto-style6 {
             width: 72px;
         }
+        .auto-style7 {
+            font-size: large;
+        }
     </style>
     
 </head>
@@ -119,13 +122,15 @@
                         <tr>
                             <td>
 
+                                <span class="auto-style7">Description</span>
+
                     <asp:TextBox ID="DescriptionTextBox" runat="server"></asp:TextBox>
 
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:FileUpload ID="FileUpload1" runat="server" />
+                                <span class="auto-style7">Upload an Image</span><asp:FileUpload ID="FileUpload1" runat="server" />
                                
                                 <br />
                             </td>
