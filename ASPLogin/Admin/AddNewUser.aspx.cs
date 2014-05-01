@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
@@ -147,7 +148,24 @@ public partial class Admin_AddNewUser : System.Web.UI.Page
              Label9.ForeColor = Color.Red;
              validEntry = false;
          }
+         if (TextBox4.Text != "")
+         {
+             try
+             {
+                 MailAddress m = new MailAddress(TextBox4.Text);
+             }
+             catch (FormatException)
+             {
+                 Label4.Visible = true;
+                 Label4.Text = "PLEASE ENTER A VALID EMAIL";
+                 Label4.ForeColor = Color.Red;
+                 validEntry = false;
+             }
+             
+         }
 
+
+        
 
         if(validEntry == true)
         {
