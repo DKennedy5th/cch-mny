@@ -136,6 +136,7 @@
 
         <br />
     <asp:Button ID="btnAddTextBox" runat="server"  Text="Add Entry Field" OnClick="btnAddTextBox_Click" />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Remove Entry Field" />
     <br /><br />
         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>

@@ -245,4 +245,12 @@ public partial class User_Journalize : System.Web.UI.Page
     {
 
     }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        if (myCount > 2)
+        {
+            myCount = myCount - 1;
+        }
+        
+    }
 }
