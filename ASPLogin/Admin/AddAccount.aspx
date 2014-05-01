@@ -80,7 +80,8 @@
                 <Columns>
                     <asp:BoundField DataField="acct_id" HeaderText="acct_id" ReadOnly="True" SortExpression="acct_id" />
                     <asp:BoundField DataField="acct_type" HeaderText="acct_type" SortExpression="acct_type" />
-                    <asp:BoundField DataField="acct_bal" HeaderText="acct_bal" SortExpression="acct_bal" />
+                    <asp:BoundField DataField="acct_name" HeaderText="acct_name" SortExpression="acct_name" />
+                    <asp:BoundField DataField="acct_bal" HeaderText="acct_bal" SortExpression="acct_bal" DataFormatString="&quot;{0:c}&quot;" />
                     <asp:BoundField DataField="active" HeaderText="active" SortExpression="active" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
@@ -94,7 +95,7 @@
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TeamCacAh4UPauaPConnectionString %>" SelectCommand="SELECT [acct_id], [acct_type], [acct_bal], [active] FROM [Accounts]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TeamCacAh4UPauaPConnectionString %>" SelectCommand="SELECT [acct_id], [acct_type], [acct_name], [acct_bal], [active] FROM [Accounts]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ApplicationDomainConnectionString %>" SelectCommand="SELECT [acct_id], [acct_name], [active], [acct_type] FROM [Accounts]"></asp:SqlDataSource>
         </td>
     </tr>
