@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_Default : System.Web.UI.Page
+public partial class Manager_ChartAccounts : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,19 +24,10 @@ public partial class Admin_Default : System.Web.UI.Page
         {
             Response.Redirect("~/User/Default.aspx");
         }
-        if (acct_type.Equals("Manager"))
+        if (acct_type.Equals("Admin"))
         {
-            Response.Redirect("~/Manager/Default.aspx");
+            Response.Redirect("~/Admin/Default.aspx");
         }
-        Label1.Text = Page.User.Identity.Name;
 
-    }
-    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Admin/AddNewUser.aspx");
     }
 }

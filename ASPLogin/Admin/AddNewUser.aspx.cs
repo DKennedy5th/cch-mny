@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,16 +12,39 @@ public partial class Admin_AddNewUser : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string acct_type;
+        string uname = Page.User.Identity.Name;
+        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+        {
+            con.Open();
+            SqlCommand cmd1 = new SqlCommand("Select type_of_account from userAccounts where username like '" + uname + "' ", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+            acct_type = (string)cmd1.ExecuteScalar();
+
+            con.Close();
+        }
+        if (acct_type.Equals("User"))
+        {
+            Response.Redirect("~/User/Default.aspx");
+        }
+        if (acct_type.Equals("Manager"))
+        {
+            Response.Redirect("~/Manager/Default.aspx");
+        }
+
         Label1.Visible = false;
         Label2.Visible = false;
         Label3.Visible = false;
         Label4.Visible = false;
         Label5.Visible = false;
         Label6.Visible = false;
+        Label7.Visible = false;
+        Label8.Visible = false;
+        Label9.Visible = false;
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
         Boolean validEntry = true;
+        string username;
         if (TextBox1.Text.Equals(""))
         {
             Label1.Visible = true;
@@ -70,6 +94,61 @@ public partial class Admin_AddNewUser : System.Web.UI.Page
             Label6.ForeColor = Color.Red;
             validEntry = false;
         }
+        //command to see if the username exists already
+        using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
+        {
+            con.Open();
+            SqlCommand cmd1 = new SqlCommand("Select username from userAccounts where username like '" + TextBox1.Text + "' ", con);// where (acct_type like 'Account Payable')order by acct_id DESC", con);
+            username = (string)cmd1.ExecuteScalar();
+
+            con.Close();
+        }
+        //determines if the username already exists and displays an error
+        if (TextBox1.Text.Trim().Equals(username))
+        {
+            Label1.Visible = true;
+            Label1.Text = "Account Name Already Exists";
+            Label1.ForeColor = Color.Red;
+            validEntry = false;
+
+        }
+
+        //Logic for password Validation
+        string passVerification = TextBox5.Text;
+        
+        Label7.Visible = false;
+        Label8.Visible = false;
+        Label9.Visible = false;
+        int letterCount = TextBox5.Text.Length;
+        
+        //Checks that it meets the lenght
+        if(letterCount < 8)
+        {
+            Label7.Text = "Password Must Contain 8 Letters";
+            Label7.Visible = true;
+            Label7.ForeColor = Color.Red;
+            validEntry = false;
+        }
+         Boolean capital = Regex.IsMatch(TextBox5.Text, "[A-Z]+");
+         if(capital == false)
+         {
+
+             Label8.Text = "Password Must Have A Capital Letter";
+             Label8.Visible = true;
+             Label8.ForeColor = Color.Red;
+             validEntry = false;
+         }
+         Boolean symbol = Regex.IsMatch(TextBox5.Text, @"\W");
+         if (symbol == false)
+         {
+
+             Label9.Text = "Password Must Contain A Symbol";
+             Label9.Visible = true;
+             Label9.ForeColor = Color.Red;
+             validEntry = false;
+         }
+
+
         if(validEntry == true)
         {
             using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))

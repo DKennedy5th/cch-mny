@@ -15,6 +15,13 @@
         .auto-style4 {
             height: 47px;
         }
+        .auto-style5 {
+            width: 154px;
+            height: 62px;
+        }
+        .auto-style6 {
+            height: 62px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" Runat="Server">
@@ -22,9 +29,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" Runat="Server">
     <table class="auto-style1">
     <tr>
-        <td class="auto-style2">Account Name</td>
-        <td>
+        <td class="auto-style5">Account Name</td>
+        <td class="auto-style6">
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Overline="False" Font-Underline="True" ForeColor="#FF3300" Text="Label"></asp:Label>
         </td>
     </tr>
     <tr>
@@ -38,7 +46,7 @@
                 <asp:ListItem>Cost of Sales</asp:ListItem>
                 <asp:ListItem>Expenses</asp:ListItem>
                 <asp:ListItem>Gain on Sale of Assets</asp:ListItem>
-                <asp:ListItem>Losses on Sale of Assets</asp:ListItem>
+                <asp:ListItem>Loss on Sale of Assets</asp:ListItem>
             </asp:DropDownList>
         </td>
     </tr>

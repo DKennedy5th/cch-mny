@@ -65,7 +65,8 @@
                         <li><a id="A4" runat="server" href="~/Admin/Default.aspx">Home</a></li>
                         <li><a id="A6" runat="server" href="~/Admin/ChartOfAccounts.aspx">Chart of Accounts</a></li>
                         <li><a id="A8" runat="server" href="~/Admin/AddAccount.aspx">Add Account</a></li>
-                        <li><a id="A3" runat="server" href="~/Admin/EditAccount.aspx">Edit Account</a></li>         
+                        <li><a id="A3" runat="server" href="~/Admin/EditAccount.aspx">Edit Account</a></li>
+                        <li><a id="A5" runat="server" href="~/Admin/Reports.aspx">Reports</a></li>        
                     </ul>
                 </nav>
             </div>

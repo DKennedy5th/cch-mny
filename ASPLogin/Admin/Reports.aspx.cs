@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_Default : System.Web.UI.Page
+public partial class User_Reports : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,15 +28,22 @@ public partial class Admin_Default : System.Web.UI.Page
         {
             Response.Redirect("~/Manager/Default.aspx");
         }
-        Label1.Text = Page.User.Identity.Name;
+    }
 
-    }
-    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    protected void load_report(object sender, EventArgs e)
     {
+        int year = DateTime.Now.Year;
+        DateTime start = new DateTime(year, 1, 1);
+        if (ReportSelection.SelectedValue == "Trial Balance")
+        {
+            //strtDate.SelectedDate = 28;
+            //Server.Transfer("~/User/Trial Balance.aspx?field1=" + strtDate.SelectedDate + "&field2=" + endDate.SelectedDate, false);
+            Server.Transfer("~/Admin/Trial Balance.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
+        }
+        else if (ReportSelection.SelectedValue == "Income Statement")
+        {
+            Server.Transfer("~/Admin/Income Statement.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
+        }
+    }
 
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Admin/AddNewUser.aspx");
-    }
 }

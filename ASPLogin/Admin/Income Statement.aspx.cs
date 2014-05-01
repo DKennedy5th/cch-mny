@@ -20,13 +20,13 @@ public partial class User_Default : System.Web.UI.Page
 
             con.Close();
         }
+        if (acct_type.Equals("User"))
+        {
+            Response.Redirect("~/User/Default.aspx");
+        }
         if (acct_type.Equals("Manager"))
         {
             Response.Redirect("~/Manager/Default.aspx");
-        }
-        if (acct_type.Equals("Admin"))
-        {
-            Response.Redirect("~/Admin/Default.aspx");
         }
         //load_fields(sender, e);
         String s1 = Request.QueryString["field1"];

@@ -10,6 +10,7 @@ public partial class User_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
         string acct_type;
         string uname = Page.User.Identity.Name;
         using (SqlConnection con = new SqlConnection("Data Source=i4bbv5vnt4.database.windows.net;Initial Catalog=TeamCacAh4UPauaP;Persist Security Info=True;User ID=TeamCache;Password=Password!"))
@@ -20,9 +21,9 @@ public partial class User_Default : System.Web.UI.Page
 
             con.Close();
         }
-        if (acct_type.Equals("Manager"))
+        if (acct_type.Equals("User"))
         {
-            Response.Redirect("~/Manager/Default.aspx");
+            Response.Redirect("~/User/Default.aspx");
         }
         if (acct_type.Equals("Admin"))
         {
