@@ -99,7 +99,7 @@
                 <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
             </td>
             <td class="auto-style7">
-                <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox5" runat="server" TextMode="Password"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -107,7 +107,7 @@
                 <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
             </td>
             <td class="auto-style11">
-                <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox6" runat="server" TextMode="Password"></asp:TextBox>
             </td>
         </tr>
         <tr>

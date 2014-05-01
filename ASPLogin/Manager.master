@@ -51,7 +51,7 @@
                     <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                         <LoggedInTemplate>
                             <p class="auto-style1">
-                                Hello, <a id="A2" runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
+                                Hello, <a id="A2" runat="server" class="username" href="~/Manager/Manage.aspx" title="Manage your account">
                                     <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
                                 </a>!
                                 <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
