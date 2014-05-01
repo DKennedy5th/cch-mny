@@ -48,6 +48,14 @@ public partial class User_Reports : System.Web.UI.Page
         {
             Server.Transfer("~/Manager/Event Report.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
         }
+        else if (ReportSelection.SelectedValue == "Balance Sheet")
+        {
+            Server.Transfer("~/Manager/Balance Sheet.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
+        }
+        else if (ReportSelection.SelectedValue == "Statement of Retained Earnings")
+        {
+            Server.Transfer("~/Manager/Retained Earnings.aspx?field1=" + start + "&field2=" + endDate.SelectedDate, false);
+        }
     }
 
 }
