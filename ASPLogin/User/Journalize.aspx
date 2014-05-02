@@ -141,8 +141,8 @@
         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
             <asp:Button runat="server" ID="MyButton" Text="Submit" OnClick="MyButton_Click" />
+            <asp:Label runat="server" ID="MyLabel" CssClass="field-validation-error"></asp:Label>
             <br /><br />
-            <asp:Label runat="server" ID="MyLabel"></asp:Label>
         </ContentTemplate>
     </asp:UpdatePanel>
 
